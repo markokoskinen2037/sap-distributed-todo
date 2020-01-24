@@ -51,10 +51,17 @@ const validateToken = (req, res, next) => {
 
 // Authentication
 app.use((req, res, next) => {
+
+    console.log(req.url)
+
     if (req.url === "/todos") {
         validateToken(req, res, next)
+    } else {
+        next()
     }
-    next()
+
+
+
 })
 
 // PROXY REQUESTS ONCE THE TOKEN REQUEST TOKEN HAS BEEN AUTHORIZED:
