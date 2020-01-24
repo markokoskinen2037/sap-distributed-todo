@@ -5,4 +5,4 @@
 - Todo microservice : https://sap-todo-ms.herokuapp.com/
 
 ### Api-gateway:
-- Todo
+- Gateway server : https://sap-api-gateway.herokuapp.com/
