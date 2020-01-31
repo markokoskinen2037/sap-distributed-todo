@@ -5,13 +5,14 @@ require('dotenv').config()
 var cors = require('cors');
 const logger = require('morgan');
 
+let inProduction = process.env.NODE_ENV === "production"
 
 
 
 const app = express()
 
-const userServiceProxy = httpProxy('https://sap-user-ms.herokuapp.com')
-const todoServiceProxy = httpProxy("https://sap-todo-ms.herokuapp.com")
+const userServiceProxy = httpProxy(inProduction ? 'https://sap-user-ms.herokuapp.com' : "http://localhost:3002")
+const todoServiceProxy = httpProxy(inProduction ? "https://sap-todo-ms.herokuapp.com" : "http://localhost:3001")
 
 
 
@@ -86,4 +87,5 @@ app.post('/todos*', (req, res, next) => {
     todoServiceProxy(req, res, next)
 })
 
-app.listen(process.env.PORT || 3003, () => console.log('api gateway started'))
+const port = process.env.PORT || 3003
+app.listen(port, () => console.log('api gateway started on port', port, inProduction))
