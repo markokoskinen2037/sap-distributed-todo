@@ -2,6 +2,10 @@ const express = require('express')
 const httpProxy = require('express-http-proxy')
 const jwt = require('jsonwebtoken');
 require('dotenv').config()
+var cors = require('cors');
+const logger = require('morgan');
+
+
 
 
 const app = express()
@@ -46,6 +50,8 @@ const validateToken = (req, res, next) => {
 
 
 
+app.use(cors())
+app.use(logger('dev'));
 
 
 
