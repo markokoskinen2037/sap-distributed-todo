@@ -54,6 +54,9 @@ const validateToken = (req, res, next) => {
 app.use(cors())
 app.use(morgan('dev'));
 
+app.get("/", (req, res) => {
+    res.send("Api-gateway")
+})
 
 
 // Authentication
